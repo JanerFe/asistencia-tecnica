@@ -2,32 +2,200 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Asistencia Técnica Virtual con Chatbot de IA</title>
+  <title>Asistencia Técnica</title>
+  <style>
+    #inicio img {
+    width: 200px; /* Cambia el tamaño horizontal de la imagen en la sección de "Inicio" */
+    height: auto; /* Mantiene la proporción vertical automáticamente */
+    }
+    /* Estilos generales */
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333333;
+    }
+
+    header {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+    margin: 0;
+    font-size: 28px;
+    }
+
+    nav ul {
+    list-style: none;
+    padding: 0;
+    }
+
+    nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+    }
+
+    nav ul li a {
+    text-decoration: none;
+    color: #555;
+    }
+
+    nav ul li a:hover {
+    color: #000;
+    }
+
+    main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+    }
+
+    section {
+    margin-bottom: 40px;
+    }
+
+    h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    }
+
+    .chatbot-widget {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px;
+    }
+
+    .chat-container {
+    padding: 10px;
+    }
+
+    .chat-messages {
+    max-height: 300px;
+    overflow-y: auto;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    }
+
+    input[type="text"] {
+    width: calc(100% - 80px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    }
+
+    button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+    button:hover {
+    background-color: #45a049;
+    }
+
+    .user-message {
+    text-align: right;
+    margin-bottom: 5px;
+    color: #333;
+    }
+
+    .bot-message {
+    text-align: left;
+    margin-bottom: 5px;
+    color: #555;
+    }
+
+    footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    }
+
+
+  </style>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <h1>Asistencia Técnica Virtual con Chatbot de IA</h1>
+    <img src="https://media.istockphoto.com/id/1206801125/es/foto/bot-de-chat-digital-t%C3%A1ctil-para-proporcionar-acceso-a-la-informaci%C3%B3n-y-los-datos-en-la-red-en.webp?b=1&s=170667a&w=0&k=20&c=Fv3P5LNCiXOfrir7c-Uigw6UQHJIucpvpo6UfMKjIHk=" alt="Logo de la empresa">
+  <h1>Asistencia Técnica</h1>
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#faq">Preguntas Frecuentes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
-  <section class="chatbot">
-    <iframe src="https://tu-chatbot-de-IA.com" frameborder="0"></iframe>
+  <section id="inicio">
+    <h2>Bienvenido a nuestra Asistencia Técnica</h2>
+    <p>Ofrecemos soluciones rápidas y eficientes para tus problemas tecnológicos. ¡Háblale a nuestro chatbot para obtener ayuda instantánea!</p>
   </section>
 
-  <section class="contact">
-    <h2>¡Contáctanos para recibir asistencia personalizada!</h2>
-    <p>Completa el siguiente formulario o utiliza nuestros datos de contacto:</p>
-    <!-- Agrega aquí el formulario de contacto -->
-    <p>Teléfono: [Número de Teléfono]</p>
-    <p>Correo Electrónico: [Correo Electrónico]</p>
+  <section id="servicios">
+    <h2>Nuestros Servicios</h2>
+    <p>Aquí puedes encontrar información sobre los servicios que ofrecemos.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas Frecuentes</h2>
+    <p>Respuestas a las preguntas más comunes de nuestros clientes.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Completa el formulario para contactarnos:</p>
+    <div class="chatbot-widget">
+      <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+          <!-- Aquí se mostrarán los mensajes del chatbot y del usuario -->
+          <div class="bot-message">¡Hola! Soy el chatbot de ayuda. ¿En qué puedo ayudarte?</div>
+        </div>
+        <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+        <button onclick="sendMessage()">Enviar</button>
+      </div>
+    </div>
   </section>
 </main>
 
 <footer>
-  <p>&copy; 2023 Asistencia Técnica Virtual</p>
+  <p>Derechos Reservados © 2023</p>
 </footer>
+
+<script>
+  function sendMessage() {
+    var userInput = document.getElementById('user-input').value;
+    var chatMessages = document.getElementById('chat-messages');
+    
+    // Mostrar mensaje del usuario
+    var userMessage = document.createElement('div');
+    userMessage.className = 'user-message';
+    userMessage.textContent = userInput;
+    chatMessages.appendChild(userMessage);
+
+    // Lógica del chatbot (aquí simulamos una respuesta)
+    var botMessage = document.createElement('div');
+    botMessage.className = 'bot-message';
+    botMessage.textContent = 'Lo siento, estoy aprendiendo. No puedo responder a eso todavía.';
+    chatMessages.appendChild(botMessage);
+
+    // Limpiar campo de entrada después de enviar el mensaje
+    document.getElementById('user-input').value = '';
+  }
+</script>
 
 </body>
 </html>
